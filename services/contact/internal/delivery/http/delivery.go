@@ -12,10 +12,11 @@ import (
 
 type ContactHTTPDelivery struct {
 	contactUseCase useCase.ContactUseCase
+	groupUseCase   useCase.GroupUseCase
 }
 
-func NewContactHTTP(contactUseCase useCase.ContactUseCase) *ContactHTTPDelivery {
-	return &ContactHTTPDelivery{contactUseCase: contactUseCase}
+func NewContactHTTP(contactUseCase useCase.ContactUseCase, groupUseCase useCase.GroupUseCase) *ContactHTTPDelivery {
+	return &ContactHTTPDelivery{contactUseCase: contactUseCase, groupUseCase: groupUseCase}
 }
 
 func (d *ContactHTTPDelivery) Start(port int) {
