@@ -6,14 +6,14 @@ import (
 	"github.com/google/uuid"
 )
 
-type ContactRepository interface {
+type Contact interface {
 	CreateContact(contact *contact.Contact) error
 	GetContactByID(id uuid.UUID) (*contact.Contact, error)
 	UpdateContact(contact *contact.Contact) error
 	DeleteContact(id uuid.UUID) error
 }
 
-type GroupRepository interface {
+type Group interface {
 	CreateGroup(group *group.Group) error
 	GetGroupByID(id uuid.UUID) (*group.Group, error)
 	AddContactToGroup(contact *contact.Contact, group *group.Group) error

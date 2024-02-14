@@ -8,10 +8,10 @@ import (
 )
 
 type ContactUseCaseImpl struct {
-	contactRepo storage.ContactRepository
+	contactRepo storage.Contact
 }
 
-func NewContactUseCase(contactRepo storage.ContactRepository) *ContactUseCaseImpl {
+func NewContactUseCase(contactRepo storage.Contact) *ContactUseCaseImpl {
 	return &ContactUseCaseImpl{
 		contactRepo: contactRepo,
 	}
@@ -19,7 +19,7 @@ func NewContactUseCase(contactRepo storage.ContactRepository) *ContactUseCaseImp
 
 func (c ContactUseCaseImpl) CreateContact(firstName, lastName, middleName, phoneNumber string) error {
 	const op = "internal.useCase.CreateContact"
-	contact, err := contactType.NewContact(uuid.New(), firstName, lastName, middleName, phoneNumber)
+	contact, err := contactType.New(uuid.New(), firstName, lastName, middleName, phoneNumber)
 	if err != nil {
 		return fmt.Errorf("%s: %w", op, err)
 	}

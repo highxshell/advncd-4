@@ -8,11 +8,11 @@ import (
 )
 
 type GroupUseCaseImpl struct {
-	groupRepo   storage.GroupRepository
-	contactRepo storage.ContactRepository
+	groupRepo   storage.Group
+	contactRepo storage.Contact
 }
 
-func NewGroupUseCase(groupRepo storage.GroupRepository, contactRepo storage.ContactRepository) *GroupUseCaseImpl {
+func NewGroupUseCase(groupRepo storage.Group, contactRepo storage.Contact) *GroupUseCaseImpl {
 	return &GroupUseCaseImpl{
 		groupRepo:   groupRepo,
 		contactRepo: contactRepo,
@@ -21,7 +21,7 @@ func NewGroupUseCase(groupRepo storage.GroupRepository, contactRepo storage.Cont
 
 func (c GroupUseCaseImpl) CreateGroup(name string) error {
 	const op = "internal.useCase.CreateGroup"
-	group, err := groupType.NewGroup(uuid.New(), name)
+	group, err := groupType.New(uuid.New(), name)
 	if err != nil {
 		return fmt.Errorf("%s: %w", op, err)
 	}

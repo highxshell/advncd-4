@@ -11,7 +11,7 @@ type Contact struct {
 	firstName, lastName, middleName, phoneNumber string
 }
 
-func NewContact(id uuid.UUID, firstName, lastName, middleName, phoneNumber string) (*Contact, error) {
+func New(id uuid.UUID, firstName, lastName, middleName, phoneNumber string) (*Contact, error) {
 	contact := &Contact{
 		ID:         id,
 		firstName:  firstName,

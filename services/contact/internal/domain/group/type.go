@@ -12,7 +12,7 @@ type Group struct {
 	Contacts []contact.Contact
 }
 
-func NewGroup(id uuid.UUID, name string) (*Group, error) {
+func New(id uuid.UUID, name string) (*Group, error) {
 	group := &Group{
 		ID:       id,
 		Contacts: []contact.Contact{},

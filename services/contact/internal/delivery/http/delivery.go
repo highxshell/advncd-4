@@ -11,11 +11,11 @@ import (
 )
 
 type ContactHTTPDelivery struct {
-	contactUseCase useCase.ContactUseCase
-	groupUseCase   useCase.GroupUseCase
+	contactUseCase useCase.Contact
+	groupUseCase   useCase.Group
 }
 
-func NewContactHTTP(contactUseCase useCase.ContactUseCase, groupUseCase useCase.GroupUseCase) *ContactHTTPDelivery {
+func NewContactHTTP(contactUseCase useCase.Contact, groupUseCase useCase.Group) *ContactHTTPDelivery {
 	return &ContactHTTPDelivery{contactUseCase: contactUseCase, groupUseCase: groupUseCase}
 }
 
