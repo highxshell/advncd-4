@@ -8,15 +8,15 @@ import (
 
 type Contact struct {
 	ID                                           uuid.UUID
-	firstName, lastName, middleName, phoneNumber string
+	FirstName, LastName, MiddleName, PhoneNumber string
 }
 
 func New(id uuid.UUID, firstName, lastName, middleName, phoneNumber string) (*Contact, error) {
 	contact := &Contact{
 		ID:         id,
-		firstName:  firstName,
-		lastName:   lastName,
-		middleName: middleName,
+		FirstName:  firstName,
+		LastName:   lastName,
+		MiddleName: middleName,
 	}
 	if err := contact.SetPhoneNumber(phoneNumber); err != nil {
 		return nil, err
@@ -26,15 +26,18 @@ func New(id uuid.UUID, firstName, lastName, middleName, phoneNumber string) (*Co
 }
 
 func (c *Contact) FullName() string {
-	return c.lastName + " " + c.firstName + " " + c.middleName
+	return c.LastName + " " + c.FirstName + " " + c.MiddleName
 }
 
 func (c *Contact) SetPhoneNumber(phoneNumber string) error {
 	const op = "internal.domain.SetPhoneNumber"
-	_, err := regexp.MatchString("^[0-9]+$", phoneNumber)
+	matched, err := regexp.MatchString("^[0-9]+$", phoneNumber)
+	if !matched {
+		return fmt.Errorf("%s: phone numbers should contain only numbers", op)
+	}
 	if err != nil {
 		return fmt.Errorf("%s: %w", op, err)
 	}
-	c.phoneNumber = phoneNumber
+	c.PhoneNumber = phoneNumber
 	return nil
 }

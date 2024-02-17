@@ -7,7 +7,7 @@ import (
 )
 
 type Storage struct {
-	db *sql.DB
+	DB *sql.DB
 }
 
 func New(host, user, password, dbname string, port int) (*Storage, error) {
@@ -18,5 +18,5 @@ func New(host, user, password, dbname string, port int) (*Storage, error) {
 		return nil, fmt.Errorf("%s: %w", op, err)
 	}
 
-	return &Storage{db: db}, nil
+	return &Storage{DB: db}, nil
 }
